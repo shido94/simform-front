@@ -1,1 +1,112 @@
-profile
+<div class="container">
+  <div class="main-body">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="{{selectedFile.src ? selectedFile.src : userImage}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+              <div class="probtn">
+                <input type="file" #image_id (change)="processFile(image_id)" name="avatar"
+                  accept="image /*" class="text-center center-block file-upload">
+              </div>
+
+              <div class="mt-3">
+                <h4>{{user.name | titlecase}}</h4>
+                <b>About</b>
+                <p class="text-muted font-size-sm">{{user.about || 'Add bio'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name <span class="error">*</span></h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" [(ngModel)]="user.name" class="form-control" value="{{user.name}}">
+                <span class="error" *ngIf="!user.name"> Please enter a valid name</span>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email <span class="error">*</span></h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control" [disabled]="true" value="{{user.email}}">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">About</h6>
+              </div>
+              <div class="col-sm-9">
+                <textarea type="text" [(ngModel)]="user.about" class="form-control" value="{{user.about}}"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-9 text-secondary">
+                <button class="btn btn-primary px-4" (click)="updateProfile()">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+  <div class="main-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="mt-3">
+                <h4>Category List</h4>
+                <hr>
+                <ul>
+                  <li *ngFor="let category of categories">{{category.title | titlecase}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Add Category <span class="error">*</span></h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" [(ngModel)]="category" class="form-control" value="{{user.name}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-9 text-secondary">
+                <button class="btn btn-primary px-4" [disabled]="!category" (click)="addCategory()">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br>

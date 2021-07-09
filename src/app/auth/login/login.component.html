@@ -1,5 +1,22 @@
 <div id="logreg-forms">
-  <a href="http://localhost:3000/user/auth/google">
+  <form [formGroup]="form" (ngSubmit)="loginForm()" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Login</h1>
+    <input type="email"  class="form-control" placeholder="Email address" formControlName="email">
+    <span class="error" *ngIf="!form.controls['email'].valid && form.controls['email']?.touched"> Please enter a valid email</span>
+
+    <input type="password" formControlName="password" class="form-control" placeholder="Password">
+    <span class="error" *ngIf="!form.controls['password'].valid && form.controls['password']?.touched">Please enter password</span>
+
+    <br>
+    <button class="btn btn-primary btn-block" [disabled]="!form.valid" type="submit"><i class="fas fa-user-plus"></i>Login</button>
+  </form>
+
+
+<p style="text-align: center;"><b>OR</b></p>
+<div id="">
+  <hr>
+  <a href="javascript:void(0)" (click)="googleLogin()">
     <img src="./assets/images/google-icon.png" style="width: 110px;height: 110px;">Login
   </a>
+</div>
 </div>

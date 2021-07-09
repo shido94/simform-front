@@ -13,8 +13,16 @@ const Constant =  new ConstantService();
 export class AuthService {
 
   constructor(private httpService: HttpService) {}
-  login(): Observable<User> {
+  googleLogin(): Observable<User> {
     return this.httpService.get('/user/auth/google');
+  }
+
+  login(data): Observable<User> {
+    return this.httpService.post('/user/login', data);
+  }
+
+  signup(data): Observable<User> {
+    return this.httpService.post('/user/auth/signup', data);
   }
 
   update(user: any): Observable<User> {

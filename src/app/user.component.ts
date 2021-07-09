@@ -25,9 +25,8 @@ export class UserComponent implements OnInit {
     });
 
     this.authService.validateToken(this.token).subscribe((result) => {
-        if (result.error_code !== 200) {
+        if (result.code !== 200) {
           this.notificationService.error('Login', 'Invalid Token');
-          this.router.navigate(['/auth/login']);
         } else {
           this.userService.setProfile(result.result.user);
           localStorage.setItem('token', result.result.token);
@@ -37,7 +36,6 @@ export class UserComponent implements OnInit {
       }, (error) => {
         const message = error.error.message || 'Something went wrong';
         this.notificationService.error('Login', message);
-        this.router.navigate(['/auth/login']);
       });
   }
 }

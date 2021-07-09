@@ -19,10 +19,14 @@ export class HeadersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showName(user): string {
+    return user.name.split(' ')[0];
+  }
+
   // tslint:disable-next-line:typedef
   logout() {
     localStorage.clear();
-    this.userService.setProfile(null);
-    this.router.navigate(['/auth/login']);
+    this.userService.logout();
+    this.router.navigateByUrl('/auth/login');
   }
 }

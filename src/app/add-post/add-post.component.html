@@ -1,12 +1,23 @@
 <div id="logreg-forms">
   <form [formGroup]="form" (ngSubmit)="addPost()" class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Add Post</h1>
+
+    <img src="{{selectedFile.src ? selectedFile.src : userImage}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+    <div class="probtn">
+      <input type="file" #image_id (change)="processFile(image_id)" name="avatar"
+        accept="image /*" class="text-center center-block file-upload">
+    </div>
+    <select name="category" (change)="valueSelected($event.target.value)" placeholder="er" id="category" class="form-control">
+      <option selected="true">Select language</option>
+      <option *ngFor="let category of categories" value="{{category._id}}">{{category.title}}</option>
+    </select>
+
     <input type="text"  class="form-control" placeholder="title" formControlName="title">
     <span class="error" *ngIf="!form.controls['title'].valid && form.controls['title']?.touched"> Please enter the title</span>
 
-    <textarea class="form-control" formControlName="description" rows="3"></textarea>
+    <textarea class="form-control" placeholder="Enter description" formControlName="description" rows="3"></textarea>
     <span class="error" *ngIf="!form.controls['description'].valid && form.controls['description']?.touched">Please enter description</span>
     <br>
-    <button class="btn btn-primary btn-block" [disabled]="!form.valid" type="submit"><i class="fas fa-user-plus"></i>Save</button>
+    <button class="btn btn-primary btn-block" [disabled]="!form.valid || !category" type="submit"><i class="fas fa-user-plus"></i>Save</button>
   </form>
 </div>

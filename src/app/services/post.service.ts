@@ -13,12 +13,12 @@ const Constant =  new ConstantService();
 export class PostService {
 
   constructor(private httpService: HttpService) {}
-  allPost(): Observable<any>  {
-    return this.httpService.get('/post');
-  }
-
-  myPost(): Observable<any>  {
-    return this.httpService.get('/post/my');
+  myPost(title?: string): Observable<any>  {
+    if (title) {
+      return this.httpService.get(`/post?title=${title}`);
+    } else {
+      return this.httpService.get(`/post`);
+    }
   }
 
   getDetails(id): any {
@@ -26,8 +26,16 @@ export class PostService {
   }
 
 
-  createPost(value: any): Observable<User> {
-    return this.httpService.post('/post', value);
+  createPost(formData: any): Observable<any> {
+    return this.httpService.post('/post', formData);
+  }
+
+  addCategory(category: string): Observable<any> {
+    return this.httpService.post('/post/category', { category });
+  }
+
+  getCategory(): Observable<any> {
+    return this.httpService.get(`/post/category`);
   }
 
   validateToken(token: string): Observable<any> {

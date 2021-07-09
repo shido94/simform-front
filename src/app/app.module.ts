@@ -13,8 +13,6 @@ import { HeadersComponent } from './headers/headers.component';
 import { UserComponent } from './user.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { ProfileComponent } from './profile/profile.component';
-import { PostDetailsComponent } from './post-details/post-details.component';
-import { MyPostComponent } from './my-post/my-post.component';
 
 
 @NgModule({
@@ -24,9 +22,7 @@ import { MyPostComponent } from './my-post/my-post.component';
     HeadersComponent,
     HomeComponent,
     AddPostComponent,
-    ProfileComponent,
-    PostDetailsComponent,
-    MyPostComponent
+    ProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,

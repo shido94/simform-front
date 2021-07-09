@@ -6,7 +6,7 @@
       <div class="col-md-4 col-sm-12 col-xs-12 logo-container">
         <a href="/">
           <img class="logo-img img-fluid" src="./assets/images/shop-icon.png" alt="logo" />
-          <h4 class="logo-title">Varivas</h4>
+          <h4 class="logo-title">Simform</h4>
         </a>
       </div>
 
@@ -27,17 +27,18 @@
             <li *ngIf="user">
               <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
                 <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
-                  Welcome {{user.name}}
+                  Welcome {{showName(user)}}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownManual">
-                  <a href="javascript:void(0)" ngbDropdownItem href="user/post">My Post</a>
-                  <a ngbDropdownItem href="/post/create">Create Post</a>
+                  <a ngbDropdownItem routerLink="user/profile">My Profile</a>
+                  <a ngbDropdownItem routerLink="/post/create">Create Post</a>
                   <a href="javascript:void(0)" ngbDropdownItem (click)="logout()">Log Out</a>
                 </div>
               </div>
             </li>
           <li *ngIf="!user">
-            <a href="/user/signin"> Sign In</a>
+            <a href="/auth/login"> SignIn</a>
+            <a href="/auth/signup"> SignUp</a>
           </li>
           <!-- <% }%> -->
         </ul>

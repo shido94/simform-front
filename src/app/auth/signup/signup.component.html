@@ -1,0 +1,17 @@
+<div id="logreg-forms">
+  <form [formGroup]="form" (ngSubmit)="signupForm()" class="form-signup">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Register</h1>
+
+    <input type="text" formControlName="name" class="form-control" placeholder="Full name" required="" autofocus="">
+    <span class="error" *ngIf="!form.controls['name'].valid && form.controls['name']?.touched"> Please enter a valid name</span>
+
+    <input type="email" formControlName="email" class="form-control" placeholder="Email address" required autofocus="">
+    <span class="error" *ngIf="!form.controls['email'].valid && form.controls['email']?.touched"> Please enter a valid email</span>
+
+    <input type="password" formControlName="password" class="form-control" placeholder="Password" required autofocus="">
+    <span class="error" *ngIf="!form.controls['password'].valid && form.controls['password']?.touched">Password should be atleast 6 digit</span>
+    <br>
+    <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+  </form>
+  <br>
+</div>

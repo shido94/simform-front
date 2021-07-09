@@ -27,6 +27,10 @@ export class UserService {
       return this.userSubject$.asObservable();
   }
 
+  updateProfile(user): Observable<any> {
+    return this.httpService.put('/user/profile', user);
+  }
+
   uploadPic(formData): Observable<User> {
     return this.httpService.post('/user/upload', formData);
   }
@@ -38,6 +42,11 @@ export class UserService {
   setProfile(user: User): any {
       this.userSubject$.next(user);
       localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  logout(): any {
+    this.userSubject$.next(null);
+    localStorage.removeItem('user');
   }
 
   addUser(user): Observable<User> {
